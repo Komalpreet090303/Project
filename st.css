@@ -1,0 +1,188 @@
+.body{
+    margin: 0;
+    padding: 0;
+}
+.tag{
+    background-color: rgb(0, 73, 88);
+    color:white;
+    width: 48px;
+    font-size: 40px;
+    padding-left: 8px;
+    padding-right: 1px;
+    border-radius: 25px;
+    margin-top: 10px;
+    display: inline ;
+}
+
+.heading{
+    color: (0, 73, 88);
+    font-size: 40px;
+    display: inline ;
+    margin-left: 10px;
+}
+.l{
+    margin-left:100px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    color: rgb(0, 73, 88);
+    cursor:pointer;
+    position:relative; 
+    bottom: 2px;
+    font-size: 20px;
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    border-style:solid;
+    border-radius: 14px;
+   
+}
+.l:hover{
+    opacity:0.7;
+}
+.p{
+    margin-left:50px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    color: rgb(0, 73, 88);
+    cursor:pointer;
+    position:relative; 
+    bottom: 2px;
+    font-size: 20px;
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    border-style:solid;
+    border-radius: 14px;
+}
+.p:hover{
+    opacity:0.7;
+}
+.m{
+    margin-left:50px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    color: rgb(0, 73, 88);
+    cursor:pointer;
+    position:relative; 
+    bottom: 2px;
+    font-size: 20px;
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    border-style:solid;
+    border-radius: 14px;
+}
+.m:hover{
+    opacity:0.7;
+}
+.n{
+    margin-left:50px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    color: rgb(0, 73, 88);
+    cursor:pointer;
+    position:relative; 
+    bottom: 2px;
+    font-size: 20px;
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    border-style:solid;
+    border-radius: 14px;
+}
+.n:hover{
+    opacity:0.7;
+}
+.sign-up{
+    background-color:rgb(0, 73, 88); 
+    position:relative; 
+    bottom: 2px;
+    color:white;
+    border:none;
+    border-radius: 2px;
+    cursor:pointer;
+    margin-left: 280px;
+    height:36px;
+    width:100px;
+
+}
+.sign-up:hover{
+    opacity:0.7;
+}
+.real{ 
+    margin-top: 60px;
+    display:inline-block;
+    font-size: 40px;
+    margin-bottom:20px ;
+}
+.ques{
+    font-size: 20px;
+    display:inline-block;
+    margin-left: 690px;
+    cursor: pointer;
+    
+}
+.faq{
+    color: #000000; 
+    font-weight: bold;
+}
+.faq:hover{
+    text-decoration: underline;
+}
+.design{
+    background-image: linear-gradient(red, yellow);
+}
+.search{
+    height: 40px;
+    width: 600px;
+    border-radius: 20px;
+}
+.search-button{
+    background-color:rgb(0, 73, 88);     
+    color:white;
+    border:none;
+    border-radius: 20px;
+    cursor:pointer;
+    height:40px;
+    width:100px;
+}
+.search-button:hover{
+    opacity:0.7;
+}
+::placeholder{
+    font-size: 20px;
+}
+.first{
+    margin-top: 10px;
+    border-style: solid;
+   padding-top: 15px;
+    border-color: grey;
+    border-width: thin;
+   padding-bottom: 30px;
+}
+.profile-photo{
+    display: inline-block;
+    
+}
+.spe-img{   
+    height:123px;
+    border-radius: 60px;    
+}
+.details{
+    margin-top: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.name{
+    display: inline-block;
+    font-weight: bold;
+    color:black;
+    font-size: 30px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+
+
+
+
