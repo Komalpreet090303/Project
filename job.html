@@ -1,88 +1,460 @@
 <!DOCTYPE html>
 <HTML>
-    <head>
-       <title>
-         The Jobsearch
-       </title>
-       <link rel="stylesheet"  href="st.css">
-    </head>
-    <body class="body"   onload="check()">
-        <div class = "design">
-            <div  class="hi">
-                <p class="tag">
-                    JS
-                </p>
-                <p class ="heading">
-                    The Jobsearch
-                </p>
-                <button class="l">
-                    Looking for job
-                </button>
-                <button class="p" onClick="location.href='post.html'">
-                
-                    Post a job
-                </button>
-                <button class="m" id="mem">
-                    Membership
-                </button>
-                <button class="n">
-                    Newsletter
-                </button>
-                <button class="sign-up"  onClick="location.href='sig.html'" >
-                    Sign up
-                </button>
-                    
-                
-            </div>
-            
-                <div class="main">
-                       <p class ="real">
-                        Looking for a Latest job?
-                       </p>
-                       <a class="ques">
-                            <span class="faq" >
-                             Frequently asked questions(FAQ's).
-                            </span>
-                       </a>
 
-                </div>
+<head>
+    <title>
+        The Jobsearch
+    </title>
+    <link rel="stylesheet" href="st.css">
+    <script>
+        console.log("man");
+        console.log(window.localStorage.getItem("size"));
+        if (window.localStorage.getItem("size") === null) {
+            window.localStorage.setItem("size", "0");
+            console.log("000");
+        }
+    </script>
+</head>
+
+<body class="body" id="bd">
+    <div class="design">
+        <div class="hi">
+            <p class="tag">
+                JS
+            </p>
+            <p class="heading">
+                The Jobsearch
+            </p>
+            <button class="l">
+                Looking for job
+            </button>
+            <button class="p" onClick="location.href='post.html'">
+                Post a job
+            </button>
+            <button class="m" id="mem">
+                Membership
+            </button>
+            <button class="n">
+                Newsletter
+            </button>
+            <button class="sign-up">
+                Sign up
+            </button>
+
+
         </div>
-        <input class = "search" placeholder="Search for a job profile...." >
+
+        <div class="main">
+            <p class="real">
+                Looking for a Latest job?
+            </p>
+            <a class="ques">
+                <span class="faq">
+                    Frequently asked questions(FAQ's).
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <input class="search" placeholder="Search for a job profile....">
     </input>
-        <button class= "search-button">
-            Search
-        </button>
-        <div class="full" id="hi"   >
-            <div class="first"  id ="yo">
-                <div class="profile-photo" >
-                    <img src="start.png" class = "spe-img">
-                </div>
-                <div class="details"  >
-                    <a class ="name" href="https://www.w3schools.com"  style="text-decoration:none">
-                        Content Creater
-                    </a>
-                    <p class = "more-details">
-                        Aha, Full-Time ,Mid level,Technical &#10003; (US/Canada)
-                    </p>
-                </div>
-                <button class="up" id="1" >
-                    UPDATE
-                </button>
-                <button class="delete"  id="1" >
-                    DELETE
-                </button>
-
+    <button class="search-button">
+        Search
+    </button>
+    <div class="full" id="hi">
+        <div class="first" id="yo">
+            <div class="profile-photo">
+                <img src="start.png" class="spe-img">
             </div>
-          
-         
+            <div class="details">
+                <a class="name" href="https://www.w3schools.com" style="text-decoration:none">
+                    Content Creater
+                </a>
+                <p class="more-details">
+                    Aha, Full-Time ,Mid level,Technical &#10003; (US/Canada)
+                </p>
+            </div>
+            <button class="up" id="1">
+                UPDATE
+            </button>
+            <button class="delete" id="1">
+                DELETE
+            </button>
+
         </div>
 
 
-   
-                  
-         
-    </body>
-    <script src="mysc.js" defer></script>
-    
+    </div>
+
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDq6H8YTNpfIk9ke3NbJy7Pf-iPQb5-29s",
+            authDomain: "firedb-39ddf.firebaseapp.com",
+            projectId: "firedb-39ddf",
+            storageBucket: "firedb-39ddf.appspot.com",
+            messagingSenderId: "974239535430",
+            appId: "1:974239535430:web:4c7129056a164526005547",
+            measurementId: "G-LQS8BKSS8D"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, set, get, child, update, remove }
+            from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+        const db = getDatabase();
+        var ko = document.getElementById('bd');
+        ko.onload = function check() {
+            if (window.localStorage.getItem("g") === null) {
+                var loc;
+                var jobb;
+                var sorce;
+                for (var im = 0; im < 99; im++) {
+                    const dbref = ref(db);
+                    var st = im.toString();
+                    get(child(dbref, st)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            jobb = snapshot.val().job;
+                            loc = snapshot.val().location;
+                            sorce = snapshot.val().photo;
+                            console.log("i enter");
+                            const p = document.createElement('div');
+                            const q = document.createElement('div');
+                            const r = document.createElement('div');
+                            p.className = "first";
+                            q.className = "profile-photo";
+                            r.className = "details";
+                            const s = document.createElement('img');
+                            s.setAttribute('src', sorce);
+                            s.className = "spe-img";
+                            q.appendChild(s);
+                            p.appendChild(q);
+                            var node = document.createElement("a");
+                            var textnode = document.createTextNode(jobb);
+                            var textn = document.createTextNode(loc);
+
+                            node.appendChild(textnode);
+                            var node1 = document.createElement("p");
+                            node1.appendChild(textn);
+                            node.className = 'name';
+                            node.href = "www.google.com";
+                            node.style = "text-decoration:none";
+                            node1.className = 'more-datails';
+                            const x = document.createElement('div');
+                            x.className = 'details';
+                            x.appendChild(node);
+                            x.appendChild(node1);
+                            const u = window.document.getElementById("hi");
+                            const child = window.document.getElementById("yo");
+                            p.appendChild(x);
+                            const upd = document.createElement('button');
+                            upd.className = "up";
+                            upd.id = snapshot.val().id;
+                            upd.jb=snapshot.val().job;
+                            upd.lc=snapshot.val().location;
+                            upd.innerHTML = "UPDATE";
+                            upd.onclick = function update() {
+                                    
+                                var k = parseInt(this.id);
+
+                                //console.log(mta1.job);
+                                var details = {
+                                    "name": this.jb,
+                                    "location": this.lc,
+                                    "id": this.id
+                                }
+                                console.log(this.id);
+                                window.localStorage.setItem("s", JSON.stringify(details));
+                                window.open("update.html");
+
+
+
+                            }
+                            const del = document.createElement('button');
+                            // var koam=1;
+                            del.className = "delete";
+                            del.id =  snapshot.val().id;
+                            del.innerHTML = "DELETE";
+                            del.onclick = function dele() {
+                                remove(ref(db, this.id))
+                                .then(()=>{
+                                    window.open("job.html");
+                                });
+                                // var k = parseInt(this.id);
+                                // var mta2 = JSON.parse(window.localStorage.getItem("g"));
+                                // var mta1 = mta2[k];
+                                // console.log(mta1.job);
+                                // var details = parseInt(this.id);
+                                // //window.localStorage.setItem("s" , JSON.stringify(details) );
+                                // mta2.splice(details, 1);
+                                // window.localStorage.setItem("g", JSON.stringify(mta2));
+                                // window.open("job.html");
+                            }
+                            p.appendChild(upd);
+                            p.appendChild(del);
+                            u.appendChild(p);
+                        }
+
+                        else {
+
+                        }
+                    })
+
+
+                }
+
+            }
+            else {
+                var meta2 = JSON.parse(window.localStorage.getItem("g"));
+
+                var ko = (window.localStorage.getItem("size"));
+                console.log(ko);
+                console.log(meta2[0].id);
+                if (meta2[0].id === ko) {
+
+                    set(ref(db, ko), {
+                        job: meta2[0].job,
+                        location: meta2[0].location,
+                        photo: meta2[0].photo,
+                        id:window.localStorage.getItem("size")
+
+                    })
+                        .then(() => {
+                            window.localStorage.removeItem("g");
+                            var loc;
+                            var jobb;
+                            var sorce;
+                            for (var im = 0; im < 100; im++) {
+                                const dbref = ref(db);
+                                var st = im.toString();
+                                get(child(dbref, st)).then((snapshot) => {
+                                    if (snapshot.exists()) {
+                                        jobb = snapshot.val().job;
+                                        loc = snapshot.val().location;
+                                        sorce = snapshot.val().photo;
+                                        console.log("i enter");
+                                        const p = document.createElement('div');
+                                        const q = document.createElement('div');
+                                        const r = document.createElement('div');
+                                        p.className = "first";
+                                        q.className = "profile-photo";
+                                        r.className = "details";
+                                        const s = document.createElement('img');
+                                        s.setAttribute('src', sorce);
+                                        s.className = "spe-img";
+                                        q.appendChild(s);
+                                        p.appendChild(q);
+                                        var node = document.createElement("a");
+                                        var textnode = document.createTextNode(jobb);
+                                        var textn = document.createTextNode(loc);
+
+                                        node.appendChild(textnode);
+                                        var node1 = document.createElement("p");
+                                        node1.appendChild(textn);
+                                        node.className = 'name';
+                                        node.href = "www.google.com";
+                                        node.style = "text-decoration:none";
+                                        node1.className = 'more-datails';
+                                        const x = document.createElement('div');
+                                        x.className = 'details';
+                                        x.appendChild(node);
+                                        x.appendChild(node1);
+                                        const u = window.document.getElementById("hi");
+                                        const child = window.document.getElementById("yo");
+                                        p.appendChild(x);
+                                        const upd = document.createElement('button');
+                                        upd.className = "up";
+                            upd.id = snapshot.val().id;
+                            upd.jb=snapshot.val().job;
+                            upd.lc=snapshot.val().location;
+                            upd.innerHTML = "UPDATE";
+                            upd.onclick = function update() {
+                                    
+                                var k = parseInt(this.id);
+
+                                //console.log(mta1.job);
+                                var details = {
+                                    "name": this.jb,
+                                    "location": this.lc,
+                                    "id": this.id
+                                }
+                                console.log(this.id);
+                                window.localStorage.setItem("s", JSON.stringify(details));
+                                window.open("update.html");
+
+
+
+                            }
+                                        const del = document.createElement('button');
+                                        // var koam=1;
+                                        del.className = "delete";
+                            del.id =  snapshot.val().id;
+                            del.innerHTML = "DELETE";
+                            del.onclick = function dele() {
+                                remove(ref(db, this.id))
+                                .then(()=>{
+                                    window.open("job.html");
+                                });
+                                // var k = parseInt(this.id);
+                                // var mta2 = JSON.parse(window.localStorage.getItem("g"));
+                                // var mta1 = mta2[k];
+                                // console.log(mta1.job);
+                                // var details = parseInt(this.id);
+                                // //window.localStorage.setItem("s" , JSON.stringify(details) );
+                                // mta2.splice(details, 1);
+                                // window.localStorage.setItem("g", JSON.stringify(mta2));
+                                // window.open("job.html");
+                            }
+                                        p.appendChild(upd);
+                                        p.appendChild(del);
+                                        u.appendChild(p);
+                                    }
+
+                                })
+
+
+                            }
+                        });
+
+                }
+                //var x = document.getElementById("mem");
+                //x.style.display = "none";
+                // window.localStorage.removeItem("size");
+                // window.localStorage.removeItem("thumbnail");
+                // var meta2 = JSON.parse(window.localStorage.getItem("g"));
+                // if(window.localStorage.getItem("size") === null){
+                //     console.log("000");
+                //     window.localStorage.setItem("size", "0");
+                //     console.log("000");
+                //  }
+                //  if(window.localStorage.getItem("size") === undefined){
+                //     console.log("1110");
+                //     window.localStorage.setItem("size", "0");
+                //     console.log("110");
+                //  }
+                //  console.log(window.localStorage.getItem("size"));
+                // var l=meta2[0];
+                // console.log(l.photo);
+                //const thumbnail = localStorage.getItem('thumbnail');
+                else {
+
+                    var ko = (window.localStorage.getItem("size"));
+                    var meta2 = JSON.parse(window.localStorage.getItem("g"));
+                    console.log("hm");
+                    update(ref(db, meta2[0].id), {
+                        job: meta2[0].job,
+                        location: meta2[0].location,
+                        //photo:meta2[0].photo
+
+                    })
+                        .then(() => {
+                            window.localStorage.removeItem("g");
+                            var loc;
+                            var jobb;
+                            var sorce;
+                            for (var im = 0; im < 100; im++) {
+                                const dbref = ref(db);
+                                var st = im.toString();
+                                get(child(dbref, st)).then((snapshot) => {
+                                    if (snapshot.exists()) {
+                                        jobb = snapshot.val().job;
+                                        loc = snapshot.val().location;
+                                        sorce = snapshot.val().photo;
+                                        console.log("i enter");
+                                        const p = document.createElement('div');
+                                        const q = document.createElement('div');
+                                        const r = document.createElement('div');
+                                        p.className = "first";
+                                        q.className = "profile-photo";
+                                        r.className = "details";
+                                        const s = document.createElement('img');
+                                        s.setAttribute('src', sorce);
+                                        s.className = "spe-img";
+                                        q.appendChild(s);
+                                        p.appendChild(q);
+                                        var node = document.createElement("a");
+                                        var textnode = document.createTextNode(jobb);
+                                        var textn = document.createTextNode(loc);
+
+                                        node.appendChild(textnode);
+                                        var node1 = document.createElement("p");
+                                        node1.appendChild(textn);
+                                        node.className = 'name';
+                                        node.href = "www.google.com";
+                                        node.style = "text-decoration:none";
+                                        node1.className = 'more-datails';
+                                        const x = document.createElement('div');
+                                        x.className = 'details';
+                                        x.appendChild(node);
+                                        x.appendChild(node1);
+                                        const u = window.document.getElementById("hi");
+                                        const child = window.document.getElementById("yo");
+                                        p.appendChild(x);
+                                        const upd = document.createElement('button');
+                                        upd.className = "up";
+                            upd.id = snapshot.val().id;
+                            upd.jb=snapshot.val().job;
+                            upd.lc=snapshot.val().location;
+                            upd.innerHTML = "UPDATE";
+                            upd.onclick = function update() {
+                                    
+                                var k = parseInt(this.id);
+
+                                //console.log(mta1.job);
+                                var details = {
+                                    "name": this.jb,
+                                    "location": this.lc,
+                                    "id": this.id
+                                }
+                                console.log(this.id);
+                                window.localStorage.setItem("s", JSON.stringify(details));
+                                window.open("update.html");
+
+
+
+                            }
+                                        const del = document.createElement('button');
+                                        // var koam=1;
+                                        del.className = "delete";
+                            del.id =  snapshot.val().id;
+                            del.innerHTML = "DELETE";
+                            del.onclick = function dele() {
+                                remove(ref(db, this.id))
+                                .then(()=>{
+                                    window.open("job.html");
+                                });
+                                // var k = parseInt(this.id);
+                                // var mta2 = JSON.parse(window.localStorage.getItem("g"));
+                                // var mta1 = mta2[k];
+                                // console.log(mta1.job);
+                                // var details = parseInt(this.id);
+                                // //window.localStorage.setItem("s" , JSON.stringify(details) );
+                                // mta2.splice(details, 1);
+                                // window.localStorage.setItem("g", JSON.stringify(mta2));
+                                // window.open("job.html");
+                            }
+                                        p.appendChild(upd);
+                                        p.appendChild(del);
+                                        u.appendChild(p);
+                                    }
+
+                                })
+
+
+                            }
+                        });
+                }
+
+            }
+
+        }
+        
+    </script>
+
+</body>
+
+
 
 </HTML>
